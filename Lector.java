@@ -3,7 +3,6 @@ import java.math.BigInteger;
 import java.math.BigDecimal;
 
 public class Leer {
-    static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
     static PrintStream out = System.out;
     private static int proceso = 0;
     private static String ultimaLectura;
@@ -16,7 +15,7 @@ public class Leer {
         do{
             try{
                 invalid = false;
-                lectura = in.readLine();
+                lectura = in();
                 resul = Integer.parseInt(lectura);
             }catch(Exception e){
                 out.println();
@@ -28,6 +27,15 @@ public class Leer {
         return resul;
     }
     
+    static String in()throws java.io.IOException{
+        InputStreamReader buffer = new InputStreamReader(System.in);
+        BufferedReader in = new BufferedReader(buffer);
+        String userInput = in.readLine();
+        buffer = null;
+        in = null;
+        return userInput;
+    }
+    
     static short Short()throws java.io.IOException{
         boolean invalid = false;
         short resul = Short.MIN_VALUE;
@@ -36,7 +44,7 @@ public class Leer {
         do{
             try{
                 invalid = false;
-                lectura = in.readLine();
+                lectura = in();
                 resul = Short.parseShort(lectura);
             }catch(Exception e){
                 out.println();
@@ -56,7 +64,7 @@ public class Leer {
         do{
             try{
                 invalid = false;
-                lectura = in.readLine();
+                lectura = in();
                 resul = Long.parseLong(lectura);
             }catch(Exception e){
                 out.println();
@@ -77,7 +85,7 @@ public class Leer {
         do{
             try{
                 invalid = false;
-                lectura = in.readLine();
+                lectura = in();
                 resul = Double.parseDouble(lectura);
             }catch(Exception e){
                 out.println();
@@ -97,7 +105,7 @@ public class Leer {
         do{
             try{
                 invalid = false;
-                lectura = in.readLine();
+                lectura = in();
                 resul = Float.parseFloat(lectura);
             }catch(Exception e){
                 out.println();
@@ -110,7 +118,7 @@ public class Leer {
     }
     
     static String Texto()throws java.io.IOException{
-        String resul = in.readLine();
+        String resul = in();
         proceso = 6;
         ultimaLectura = resul;
         return resul;
@@ -124,7 +132,7 @@ public class Leer {
         do{
             try{
                 invalid = false;
-                lectura = in.readLine();
+                lectura = in();
                 resul = new BigInteger(lectura);
             }catch(Exception e){
                 out.println();
@@ -144,7 +152,7 @@ public class Leer {
         do{
             try{
                 invalid = false;
-                lectura = in.readLine();
+                lectura = in();
                 resul = new BigDecimal(lectura);
             }catch(Exception e){
                 out.println();
@@ -166,7 +174,7 @@ public class Leer {
             out.println("- Digite 1 para si");
             out.println("- Digite 2 para no");
             try{
-                int eleccion = Integer.parseInt(in.readLine());
+                int eleccion = Integer.parseInt(in());
                 if(eleccion < 0 || eleccion > 2){
                     out.println();
                     out.println("Eleccion invalida. Intentelo de nuevo");
