@@ -1,13 +1,15 @@
 import java.io.*;
 import java.math.BigInteger;
 import java.math.BigDecimal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-public class Leer {
-    static PrintStream out = System.out;
+class Leer implements Serializable{
+    private static PrintStream out = System.out;
     private static int proceso = 0;
     private static String ultimaLectura;
     
-    static int Entero()throws java.io.IOException{
+    static int Entero(){
         boolean invalid = false;
         int resul = Integer.MIN_VALUE;
         String lectura = "";
@@ -27,16 +29,25 @@ public class Leer {
         return resul;
     }
     
-    static String in()throws java.io.IOException{
+    static String in(){
+        boolean invalid = false;
+        String userInput = "";
         InputStreamReader buffer = new InputStreamReader(System.in);
         BufferedReader in = new BufferedReader(buffer);
-        String userInput = in.readLine();
+        do{
+            try {
+                userInput = in.readLine();
+            } catch (IOException ex) {
+                invalid = true;
+                Logger.getLogger(Leer.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }while(invalid);
         buffer = null;
         in = null;
         return userInput;
     }
     
-    static short Short()throws java.io.IOException{
+    static short Short(){
         boolean invalid = false;
         short resul = Short.MIN_VALUE;
         String lectura = "";
@@ -56,7 +67,7 @@ public class Leer {
         return resul;
     }
     
-    static long Long()throws java.io.IOException{
+    static long Long(){
         boolean invalid = false;
         long resul = Long.MIN_VALUE;
         String lectura = "";
@@ -77,7 +88,7 @@ public class Leer {
     }
     
     
-    static double Double()throws java.io.IOException{
+    static double Double(){
         boolean invalid = false;
         double resul = Double.MIN_VALUE;
         String lectura = "";
@@ -97,7 +108,7 @@ public class Leer {
         return resul;
     }
     
-    static float Float()throws java.io.IOException{
+    static float Float(){
         boolean invalid = false;
         float resul = Float.MIN_VALUE;
         String lectura = "";
@@ -117,14 +128,14 @@ public class Leer {
         return resul;
     }
     
-    static String Texto()throws java.io.IOException{
+    static String Texto(){
         String resul = in();
         proceso = 6;
         ultimaLectura = resul;
         return resul;
     }
     
-    static BigInteger EnteroInfinito()throws java.io.IOException{
+    static BigInteger EnteroInfinito(){
         boolean invalid = false;
         BigInteger resul = BigInteger.ZERO;
         String lectura = "";
@@ -144,7 +155,7 @@ public class Leer {
         return resul;
     }
     
-    static BigDecimal DecimalInfinito()throws java.io.IOException{
+    static BigDecimal DecimalInfinito(){
         boolean invalid = false;
         BigDecimal resul = BigDecimal.ZERO;
         String lectura = "";
@@ -164,7 +175,7 @@ public class Leer {
         return resul;
     }
     
-    static boolean Boolean()throws java.io.IOException{
+    static boolean Boolean(){
         boolean invalid = false;
         boolean resul = false;
         proceso = 9;
